@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Guess Game</title>
+<style>
+body {
+	background-image: url("Picture6.bmp");
+	background-color: #000000;
+	color: aqua;
+	font-size: 14pt;
+	font-weight: bold;
+	margin-left: 50px;
+	margin-top: 0pt;
+	margin-bottom: 0pt;
+}
+#title {
+	text-decoration: underline;
+	color: #7700DF;
+	font-size: 16pt;
+	font-weight: bold;
+	margin-bottom: 15pt;
+}
+h1, h2, h3, h4 {
+	margin-top: 0pt;
+	margin-bottom: 5pt;
+}
+</style>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+<h1>The Guess My Number Game</h1>
+<table border="1">
+<tr><td id="G1Border" style="border: 5px solid red;">
+	<table border="0">
+	<tr>
+		<td id="G1Heading" colspan="7" align="center" style="width: 520px; font-size: 20pt; color: khaki;">Game #1</td>
+	</tr>
+	<tr>
+		<td id="G1Label1" style="width: 150px;">Guess Number 1: </td>
+		<td style="width: 105px;">
+			<table id="G1-Guess1-Table1" border="0">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G1InputBox1" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G1InputBox1', '#G1Blink1');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G1InputBox1', '#G1Blink1');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G1Blink1" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G1-Guess1-Table2">
+			<tr> 
+				<td id="G1Value1" style="width: 50px; color: yellow;">25</td>
+				<td id="G1LowHigh1" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+				
+		<td style="width: 20px"></td> 
+		
+		<td id="G1Label5" style="width: 150px;">Guess Number 5: </td>
+		<td style="width: 105px;">
+			<table id="G1-Guess5-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G1InputBox5" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G1InputBox5', '#G1Blink5');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G1InputBox5', '#G1Blink5');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G1Blink5" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G1-Guess5-Table2">
+			<tr> 
+				<td id="G1Value5" style="width: 50px; color: yellow;">25</td>
+				<td id="G1LowHigh5" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	
+	<tr>
+		<td id="G1Label2" style="width: 150px;">Guess Number 2: </td>
+		<td style="width: 105px;">
+			<table id="G1-Guess2-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G1InputBox2" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G1InputBox2', '#G1Blink2');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G1InputBox2', '#G1Blink2');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G1Blink2" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G1-Guess2-Table2">
+			<tr> 
+				<td id="G1Value2" style="width: 50px; color: yellow;">25</td>
+				<td id="G1LowHigh2" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+				
+		<td style="width: 20px"></td> 
+		
+		<td id="G1Label6" style="width: 150px;">Guess Number 6: </td>
+		<td style="width: 105px;">
+			<table id="G1-Guess6-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G1InputBox6" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G1InputBox6', '#G1Blink6');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G1InputBox6', '#G1Blink6');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G1Blink6" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G1-Guess6-Table2">
+			<tr> 
+				<td id="G1Value6" style="width: 50px; color: yellow;">25</td>
+				<td id="G1LowHigh6" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	
+	<tr>
+		<td id="G1Label3" style="width: 150px;">Guess Number 3: </td>
+		<td style="width: 105px;">
+			<table id="G1-Guess3-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G1InputBox3" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G1InputBox3', '#G1Blink3');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G1InputBox3', '#G1Blink3');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G1Blink3" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G1-Guess3-Table2">
+			<tr> 
+				<td id="G1Value3" style="width: 50px; color: yellow;">25</td>
+				<td id="G1LowHigh3" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+				
+		<td style="width: 20px"></td> 
+		
+		<td id="G1Label7" style="width: 150px;">Guess Number 7: </td>
+		<td style="width: 105px;">
+			<table id="G1-Guess7-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G1InputBox7" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G1InputBox7', '#G1Blink7');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G1InputBox7', '#G1Blink7');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G1Blink7" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G1-Guess7-Table2">
+			<tr> 
+				<td id="G1Value7" style="width: 50px; color: yellow;">25</td>
+				<td id="G1LowHigh7" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+
+	<tr>
+		<td id="G1Label4" style="width: 150px;">Guess Number 4: </td>
+		<td style="width: 105px;">
+			<table id="G1-Guess4-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G1InputBox4" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G1InputBox4', '#G1Blink4');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G1InputBox4', '#G1Blink4');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G1Blink4" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G1-Guess4-Table2">
+			<tr> 
+				<td id="G1Value4" style="width: 50px; color: yellow;">25</td>
+				<td id="G1LowHigh4" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+				
+		<td style="width: 20px"></td> 
+		
+		<td id="G1Label8" style="width: 150px;">Guess Number 8: </td>
+		<td style="width: 105px;">
+			<table id="G1-Guess8-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G1InputBox8" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G1InputBox8', '#G1Blink8');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G1InputBox8', '#G1Blink8');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G1Blink8" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G1-Guess8-Table2">
+			<tr> 
+				<td id="G1Value8" style="width: 50px; color: yellow;">25</td>
+				<td id="G1LowHigh8" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+	</tr>	
+	<tr>
+		<td id="G1WinLose" colspan="7" align="center" style="font-size: 20pt; color: lime;">You have Won the Game!!</td>
+	</tr>
+	<tr>
+		<td id="G1MyNumber" colspan="7" align="center" style="color: white;">My number was 35!</td>
+	</tr>
+	</table>
+</td>
+
+<td id="G2Border" style="border: 5px solid aqua;">
+	<table border="0">
+	<tr>
+		<td id="G2Heading" colspan="7" align="center" style="width: 520px; font-size: 20pt; color: khaki;">Game #2</td>
+	</tr>
+	<tr>
+		<td id="G2Label1" style="width: 150px;">Guess Number 1: </td>
+		<td style="width: 105px;">
+			<table id="G2-Guess1-Table1" border="0">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G2InputBox1" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G2InputBox1', '#G2Blink1');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G2InputBox1', '#G2Blink1');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G2Blink1" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G2-Guess1-Table2">
+			<tr> 
+				<td id="G2Value1" style="width: 50px; color: yellow;">25</td>
+				<td id="G2LowHigh1" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+				
+		<td style="width: 20px"></td> 
+		
+		<td id="G2Label5" style="width: 150px;">Guess Number 5: </td>
+		<td style="width: 105px;">
+			<table id="G2-Guess5-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G2InputBox5" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G2InputBox5', '#G2Blink5');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G2InputBox5', '#G2Blink5');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G2Blink5" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G2-Guess5-Table2">
+			<tr> 
+				<td id="G2Value5" style="width: 50px; color: yellow;">25</td>
+				<td id="G2LowHigh5" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	
+	<tr>
+		<td id="G2Label2" style="width: 150px;">Guess Number 2: </td>
+		<td style="width: 105px;">
+			<table id="G2-Guess2-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G2InputBox2" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G2InputBox2', '#G2Blink2');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G2InputBox2', '#G2Blink2');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G2Blink2" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G2-Guess2-Table2">
+			<tr> 
+				<td id="G2Value2" style="width: 50px; color: yellow;">25</td>
+				<td id="G2LowHigh2" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+				
+		<td style="width: 20px"></td> 
+		
+		<td id="G2Label6" style="width: 150px;">Guess Number 6: </td>
+		<td style="width: 105px;">
+			<table id="G2-Guess6-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G2InputBox6" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G2InputBox6', '#G2Blink6');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G2InputBox6', '#G2Blink6');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G2Blink6" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G2-Guess6-Table2">
+			<tr> 
+				<td id="G2Value6" style="width: 50px; color: yellow;">25</td>
+				<td id="G2LowHigh6" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	
+	<tr>
+		<td id="G2Label3" style="width: 150px;">Guess Number 3: </td>
+		<td style="width: 105px;">
+			<table id="G2-Guess3-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G2InputBox3" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G2InputBox3', '#G2Blink3');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G2InputBox3', '#G2Blink3');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G2Blink3" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G2-Guess3-Table2">
+			<tr> 
+				<td id="G2Value3" style="width: 50px; color: yellow;">25</td>
+				<td id="G2LowHigh3" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+				
+		<td style="width: 20px"></td> 
+		
+		<td id="G2Label7" style="width: 150px;">Guess Number 7: </td>
+		<td style="width: 105px;">
+			<table id="G2-Guess7-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G2InputBox7" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G2InputBox7', '#G2Blink7');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G2InputBox7', '#G2Blink7');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G2Blink7" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G2-Guess7-Table2">
+			<tr> 
+				<td id="G2Value7" style="width: 50px; color: yellow;">25</td>
+				<td id="G2LowHigh7" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+
+	<tr>
+		<td id="G2Label4" style="width: 150px;">Guess Number 4: </td>
+		<td style="width: 105px;">
+			<table id="G2-Guess4-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G2InputBox4" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G2InputBox4', '#G2Blink4');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G2InputBox4', '#G2Blink4');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G2Blink4" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G2-Guess4-Table2">
+			<tr> 
+				<td id="G2Value4" style="width: 50px; color: yellow;">25</td>
+				<td id="G2LowHigh4" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+				
+		<td style="width: 20px"></td> 
+		
+		<td id="G2Label8" style="width: 150px;">Guess Number 8: </td>
+		<td style="width: 105px;">
+			<table id="G2-Guess8-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G2InputBox8" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G2InputBox8', '#G2Blink8');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G2InputBox8', '#G2Blink8');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G2Blink8" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G2-Guess8-Table2">
+			<tr> 
+				<td id="G2Value8" style="width: 50px; color: yellow;">25</td>
+				<td id="G2LowHigh8" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+	</tr>	
+	<tr>
+		<td id="G2WinLose" colspan="7" align="center" style="font-size: 20pt; color: lime;">You have Won the Game!!</td>
+	</tr>
+	<tr>
+		<td id="G2MyNumber" colspan="7" align="center" style="color: white;">My number was 35!</td>
+	</tr>
+	</table>
+</td>
+</tr>
+
+<tr><td id="G3Border" style="border: 5px solid aqua;">
+	<table>
+	<tr>
+		<td id="G3Heading" colspan="7" align="center" style="width: 520px; font-size: 20pt; color: khaki;">Game #3</td>
+	</tr>
+	<tr>
+		<td id="G3Label1" style="width: 150px;">Guess Number 1: </td>
+		<td style="width: 105px;">
+			<table id="G3-Guess1-Table1" border="0">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G3InputBox1" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G3InputBox1', '#G3Blink1');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G3InputBox1', '#G3Blink1');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G3Blink1" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G3-Guess1-Table2">
+			<tr> 
+				<td id="G3Value1" style="width: 50px; color: yellow;">25</td>
+				<td id="G3LowHigh1" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+				
+		<td style="width: 20px"></td> 
+		
+		<td id="G3Label5" style="width: 150px;">Guess Number 5: </td>
+		<td style="width: 105px;">
+			<table id="G3-Guess5-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G3InputBox5" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G3InputBox5', '#G3Blink5');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G3InputBox5', '#G3Blink5');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G3Blink5" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G3-Guess5-Table2">
+			<tr> 
+				<td id="G3Value5" style="width: 50px; color: yellow;">25</td>
+				<td id="G3LowHigh5" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	
+	<tr>
+		<td id="G3Label2" style="width: 150px;">Guess Number 2: </td>
+		<td style="width: 105px;">
+			<table id="G3-Guess2-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G3InputBox2" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G3InputBox2', '#G3Blink2');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G3InputBox2', '#G3Blink2');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G3Blink2" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G3-Guess2-Table2">
+			<tr> 
+				<td id="G3Value2" style="width: 50px; color: yellow;">25</td>
+				<td id="G3LowHigh2" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+				
+		<td style="width: 20px"></td> 
+		
+		<td id="G3Label6" style="width: 150px;">Guess Number 6: </td>
+		<td style="width: 105px;">
+			<table id="G3-Guess6-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G3InputBox6" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G3InputBox6', '#G3Blink6');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G3InputBox6', '#G3Blink6');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G3Blink6" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G3-Guess6-Table2">
+			<tr> 
+				<td id="G3Value6" style="width: 50px; color: yellow;">25</td>
+				<td id="G3LowHigh6" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	
+	<tr>
+		<td id="G3Label3" style="width: 150px;">Guess Number 3: </td>
+		<td style="width: 105px;">
+			<table id="G3-Guess3-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G3InputBox3" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G3InputBox3', '#G3Blink3');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G3InputBox3', '#G3Blink3');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G3Blink3" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G3-Guess3-Table2">
+			<tr> 
+				<td id="G3Value3" style="width: 50px; color: yellow;">25</td>
+				<td id="G3LowHigh3" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+				
+		<td style="width: 20px"></td> 
+		
+		<td id="G3Label7" style="width: 150px;">Guess Number 7: </td>
+		<td style="width: 105px;">
+			<table id="G3-Guess7-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G3InputBox7" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G3InputBox7', '#G3Blink7');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G3InputBox7', '#G3Blink7');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G3Blink7" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G3-Guess7-Table2">
+			<tr> 
+				<td id="G3Value7" style="width: 50px; color: yellow;">25</td>
+				<td id="G3LowHigh7" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+
+	<tr>
+		<td id="G3Label4" style="width: 150px;">Guess Number 4: </td>
+		<td style="width: 105px;">
+			<table id="G3-Guess4-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G3InputBox4" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G3InputBox4', '#G3Blink4');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G3InputBox4', '#G3Blink4');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G3Blink4" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G3-Guess4-Table2">
+			<tr> 
+				<td id="G3Value4" style="width: 50px; color: yellow;">25</td>
+				<td id="G3LowHigh4" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+				
+		<td style="width: 20px"></td> 
+		
+		<td id="G3Label8" style="width: 150px;">Guess Number 8: </td>
+		<td style="width: 105px;">
+			<table id="G3-Guess8-Table1">
+			<tr>
+				<td style="width: 35px;"> 
+					<input type="text" id="G3InputBox8" size="2" maxlength="3" max="100" min="0" 
+						required oninput="checkvalue('#G3InputBox8', '#G3Blink8');" 
+						onkeydown="if(event.keyCode==13) dosubmit('#G3InputBox8', '#G3Blink8');">
+				</td>
+				<td style="width: 70px; font: times; font-size: 9pt;"> 
+					<b id="G3Blink8" style="color: red;"></b>
+				</td>
+			</tr>
+			</table>
+			<table id="G3-Guess8-Table2">
+			<tr> 
+				<td id="G3Value8" style="width: 50px; color: yellow;">25</td>
+				<td id="G3LowHigh8" style="width: 55px; color: yellow;">Low</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td id="G3WinLose" colspan="7" align="center" style="width: 520px; font-size: 20pt; color: lime;">You have Won the Game!!</td>
+	</tr>
+	<tr>
+		<td id="G3MyNumber" colspan="7" align="center" style="color: white;">My number was 89!</td>
+	</tr>
+	</table>
+</td>
+<td id="InputBorder" align="center" style="border: 5px solid khaki;">
+	<table border="0">
+	<tr>
+		<td colspan="4" align="center" style="width: 520px; font-size: 20pt; color: khaki;">Tournament</td>
+	</tr>
+		<tr>
+		<td style="visibility: hidden;">&nbsp;</td>
+		<td style="visibility: hidden;">&nbsp;</td>
+		<td style="visibility: hidden;">&nbsp;</td>
+	 	<td style="visibility: hidden;">&nbsp;</td>
+	</tr>
+	<tr>	
+		<td align="center" colspan="4" style="color: white;">Press the Reset button to clear the board and start a new Tournament.</td>
+	</tr>
+	<tr>
+		<td align="center" colspan="4"><button id="resetbtn" name="resetgame" onclick="doreset();">Reset</button></td>
+	</tr>
+	<tr>
+		<td style="visibility: hidden;">&nbsp;</td>
+		<td style="visibility: hidden;">&nbsp;</td>
+		<td style="visibility: hidden;">&nbsp;</td>
+		<td style="visibility: hidden;">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="TWinLose" colspan="4" align="center" style="font-size: 20pt; color: lime;">You have won the Tournament!!</td>
+	</tr>
+	<tr>
+		<td id="TNumWon" colspan="4" align="center" style="color: white;">You won 2 Games!</td>
+	</tr>
+	</table>
+</td>
+</tr>
+</table>
+
+</body>
+<script type="text/javascript" src="flash.js"></script>
+<script type="text/javascript" src="provided.js"></script>
+<script type="text/javascript" src="solution.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(initializeGame());
+</script>
+</html>
